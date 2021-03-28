@@ -7,7 +7,9 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import ExplorePage from './ExplorePage';
 import SavedPost from './SavedPost';
 import Setting from './Setting/Index';
-import PostEdit from './PostEdit';
+import PostEdit from './EditPost/PostEdit';
+import NewPost from './NewPost/NewPost';
+import NewImage from './NewPost/NewImage';
 import Loading from './Common/Loading';
 import '../css/index.css';
 import { ChangeColor } from '../Redux/Actions';
@@ -30,7 +32,7 @@ const MainContainer = (props) => {
 					<div className="leftSideBar">
 						<SideNav />
 					</div>
-					<div className="card main-container">
+					<div className="main-container">
 						<Switch>
 							<Route exact path="/" component={HomePage} />
 							<Route
@@ -41,13 +43,13 @@ const MainContainer = (props) => {
 							{props.user.type === 'user' ? (
 								<Route
 									exact
-									path={`/profile/:id`}
+									path="/profile/:id"
 									component={UserProfile}
 								/>
 							) : (
 								<Route
 									exact
-									path={`/profile/:id`}
+									path="/profile/:id"
 									component={ArtistProfile}
 								/>
 							)}
@@ -67,9 +69,15 @@ const MainContainer = (props) => {
 								path="/edit/:id"
 								component={PostEdit}
 							/>
+							<Route exact path="/addPost" component={NewPost} />
+							<Route
+								exact
+								path="/newpost/image/:id"
+								component={NewImage}
+							/>
 						</Switch>
 					</div>
-					<div className="rightSideBar" style={{ height: '100vh' }}>
+					<div className="rightSideBar">
 						<RightSide />
 					</div>
 				</div>

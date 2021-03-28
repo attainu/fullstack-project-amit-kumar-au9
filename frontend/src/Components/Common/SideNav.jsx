@@ -1,15 +1,10 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
-import { logoutUser } from '../../Redux/Actions';
 import '../../css/sideNav.css';
 
 const SideNav = (props) => {
 	const [isClicked, setClicked] = useState(false);
-	const handleLogout = () => {
-		props.logoutUser();
-		props.history.push('/auth/login');
-	};
 	return (
 		<div className={`sidebar ${isClicked ? '' : 'active'}`}>
 			<Link to="/" className="logoLink">
@@ -38,16 +33,6 @@ const SideNav = (props) => {
 				</span>
 			</NavLink>
 			<NavLink
-				to="/quotation"
-				activeClassName="optionActive"
-				className="navOption"
-			>
-				<i className="fas fa-money-check-alt option"></i>
-				<span className={`showNavText ${isClicked ? '' : 'active'}`}>
-					Quotation
-				</span>
-			</NavLink>
-			<NavLink
 				to={`/save/${props.user.userId}`}
 				activeClassName="optionActive"
 				className="navOption"
@@ -67,12 +52,6 @@ const SideNav = (props) => {
 					Profile
 				</span>
 			</NavLink>
-			<button className="navOption btn" onClick={handleLogout}>
-				<i className="fas fa-sign-out-alt option"></i>
-				<span className={`showNavText ${isClicked ? '' : 'active'}`}>
-					Log out
-				</span>
-			</button>
 			<NavLink
 				to="/setting"
 				activeClassName="optionActive"
@@ -83,6 +62,16 @@ const SideNav = (props) => {
 					Setting
 				</span>
 			</NavLink>
+			{props.user.type === 'artist' && (
+				<NavLink to="/addPost" className="navOption addPost">
+					<i className="fas fa-plus option"></i>
+					<span
+						className={`showNavText ${isClicked ? '' : 'active'}`}
+					>
+						Add Post
+					</span>
+				</NavLink>
+			)}
 			<div
 				className={`showButton ${isClicked ? 'active' : ''}`}
 				onClick={() => setClicked(!isClicked)}
@@ -96,4 +85,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { logoutUser })(SideNav);
+export default connect(mapStateToProps)(SideNav);

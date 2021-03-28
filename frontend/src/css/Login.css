@@ -28,7 +28,7 @@
 .login-inner .card-header {
 	border-radius: 10px 10px 0 0;
 	background-color: var(--primary);
-	color: var(--secondary_text);
+	color: var(--primary_text);
 	text-align: center;
 }
 .login-form {

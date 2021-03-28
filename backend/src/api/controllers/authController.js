@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { secret } = require('../utils/config');
+var path = require('path');
 
 const userAuthModel = require('../models/authModel');
 
@@ -31,19 +32,19 @@ exports.registerUser = (req, res, next) => {
 
 exports.loginUser = (req, res, next) => {
 	try {
-		if (req.session.authToken) {
-			return res.json({
-				status: 300,
-				message: 'Already logged in',
-				token: req.session.authToken,
-			});
-		}
+		// if (req.session.authToken) {
+		// 	return res.json({
+		// 		status: 300,
+		// 		message: 'Already logged in',
+		// 		token: req.session.authToken,
+		// 	});
+		// }
 		userAuthModel.loginUser(req.body.email, (err, userData) => {
 			if (err) return next(err);
 			if (!userData) {
 				return res.json({
+					message: 'User email doesnot exist',
 					status: 300,
-					message: 'Login Failed',
 					error: 'User email doesnot exist',
 				});
 			}
@@ -55,7 +56,15 @@ exports.loginUser = (req, res, next) => {
 				return res.json({
 					message: 'Invalid password',
 					status: 300,
+					error: 'Invalid password',
 				});
+			if (userData.isActive === 0) {
+				return res.json({
+					message: 'Verify your email account and Login Again',
+					status: 300,
+					error: 'Verify your email account and Login Again',
+				});
+			}
 			var token = jwt.sign({ id: userData._id }, secret, {
 				expiresIn: 86400,
 			});
@@ -90,6 +99,7 @@ exports.logoutUser = (req, res, next) => {
 			return res.json({
 				message: 'User not logged in, login first',
 				status: 300,
+				error: 'User not logged in, login first',
 			});
 		}
 	} catch (err) {
@@ -110,6 +120,64 @@ exports.getUserDetail = (req, res, next) => {
 				data: result,
 				userId: result._id,
 			});
+		});
+	} catch (error) {
+		return next(err);
+	}
+};
+
+exports.emailExist = (req, res, next) => {
+	try {
+		userAuthModel.emailExist(req.query.email, (err, result) => {
+			if (err) {
+				console.log(err);
+				return res.json({
+					message: 'DB Error',
+					status: 500,
+					error: err.stack,
+				});
+			}
+			return res.json(result);
+		});
+	} catch (error) {
+		return next(err);
+	}
+};
+
+exports.passwordReset = (req, res, next) => {
+	try {
+		const { token, userId, password } = req.body;
+		userAuthModel.passwordReset(token, userId, password, (err, result) => {
+			if (err)
+				return res.json({
+					message: 'DB Error',
+					status: 500,
+					error: err.stack,
+				});
+			return res.json(result);
+		});
+	} catch (error) {
+		return next(err);
+	}
+};
+
+exports.verifyEmail = (req, res, next) => {
+	try {
+		const { token, id } = req.query;
+		userAuthModel.verifyEmail(token, id, (err, result) => {
+			if (err)
+				return res.json({
+					message: 'DB Error',
+					status: 500,
+					error: err.stack,
+				});
+			console.log(result, __dirname);
+			if (result.status === 200) {
+				return res.sendFile(
+					path.join(__dirname, '..', 'views', 'index.html'),
+				);
+			}
+			return res.json(result);
 		});
 	} catch (error) {
 		return next(err);

@@ -5,6 +5,7 @@ import Dp from './Common/Dp';
 import Details from './UserComponents/Detail';
 import GalleryView from '../Common/GalleryView';
 import Loading from '../Common/Loading';
+import ErrorPage from '../Common/ErrorPage';
 
 const UserPage = ({
 	match,
@@ -69,7 +70,7 @@ const UserPage = ({
 	} else if (isLoadingUserDetail) {
 		return <Loading />;
 	} else {
-		return <h1>error</h1>;
+		return <ErrorPage error="Something went wrong" />;
 	}
 };
 const mapStateToProps = (state) => {

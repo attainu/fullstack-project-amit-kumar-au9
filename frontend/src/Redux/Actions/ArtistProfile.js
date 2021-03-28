@@ -128,3 +128,43 @@ export const fetchEditPost = (id) => async (dispatch) => {
 		dispatch({ type: 'TOGGLE_IS_LOADING_EDIT_POST_PAGE' });
 	}
 };
+
+export const addFollow = (id, callback) => {
+	try {
+		axios
+			.get(`${base_url}/follower/addFollower/${id}`, {
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			})
+			.then((res) => {
+				callback('', res.data.message);
+			})
+			.catch(() => {
+				callback('Something went wrong');
+			});
+	} catch (error) {
+		callback('Something went wrong');
+	}
+};
+
+export const removeFollow = (id, callback) => {
+	try {
+		axios
+			.get(`${base_url}/follower/removeFollower/${id}`, {
+				headers: {
+					'Content-Type': 'application/json',
+					'auth-token': localStorage.getItem('auth-token'),
+				},
+			})
+			.then((res) => {
+				callback('', res.data.message);
+			})
+			.catch(() => {
+				callback('Something went wrong');
+			});
+	} catch (error) {
+		callback('Something went wrong');
+	}
+};

@@ -9,7 +9,7 @@ const Theme = () => {
 	};
 
 	return (
-		<div className="card setting_common_card mb-5">
+		<div className="setting_common_card mb-5">
 			<div className="card-body theme_container">
 				<Zoom>
 					{colorList.colors.map((color, idx) => {

@@ -11,6 +11,12 @@ exports.userRegisterSchema = Joi.object({
 	password: Joi.string().min(6).required(),
 });
 
+exports.resetPasswordSchema = Joi.object({
+	token: Joi.string().min(6).required(),
+	userId: Joi.string().min(6).required(),
+	password: Joi.string().min(6).required(),
+});
+
 exports.artistRegisterSchema = Joi.object({
 	name: Joi.string().min(6).required(),
 	email: Joi.string().min(6).required().email(),

@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { base_url } from '../../../Redux/config';
+import { addFollow, removeFollow } from '../../../Redux/Actions';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const allOccassion = ['birthday', 'wedding', 'outing'];
 
@@ -40,9 +43,73 @@ const Detail = (props) => {
 			})
 			.then((res) => {
 				setMsg(res.data.message);
-				// props.fetchArtist(props.match.params.id);
 			})
 			.catch(() => setError('Some went wrong'));
+	};
+
+	const follow = () => {
+		addFollow(props.Id, (err, message) => {
+			if (err) console.log(err);
+			else {
+				toast.dark(`${message}...Refresh to Reload`, {
+					position: 'bottom-left',
+					autoClose: 3000,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				});
+			}
+		});
+	};
+
+	const Unfollow = () => {
+		removeFollow(props.Id, (err, message) => {
+			if (err) console.log(err);
+			else {
+				toast.dark(`${message}...Refresh to Reload`, {
+					position: 'bottom-left',
+					autoClose: 3000,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				});
+			}
+		});
+	};
+
+	const followRender = () => {
+		let isFollow = props.followerDetail.filter((data) => {
+			if (data.userId1 === props.userId) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+		if (isFollow.length !== 0) {
+			return (
+				<span
+					className="text-primary fw-bold"
+					type="button"
+					onClick={Unfollow}
+				>
+					Unfollow
+				</span>
+			);
+		} else {
+			return (
+				<span
+					className="text-primary fw-bold"
+					type="button"
+					onClick={follow}
+				>
+					Follow
+				</span>
+			);
+		}
 	};
 
 	const renderOccassion = (data) => {
@@ -69,6 +136,7 @@ const Detail = (props) => {
 
 	return (
 		<div className="container">
+			<ToastContainer />
 			<div className="d-flex flex-row justify-content-between align-items-center flex-wrap">
 				<h3 className="text-primary-color fw-bolder">{props.Name}</h3>
 				<span>
@@ -90,7 +158,7 @@ const Detail = (props) => {
 						{props.followingDetail.length} Following
 					</b>
 					&emsp;
-					{props.Id !== localStorage.getItem('userId') ? (
+					{props.Id === props.userId ? (
 						<button
 							type="button"
 							data-bs-toggle="modal"
@@ -100,9 +168,7 @@ const Detail = (props) => {
 							Edit Profile <i className="fas fa-pen"></i>
 						</button>
 					) : (
-						<button className="btn btn-outline-primary">
-							Hire <i className="fas fa-user-plus"></i>
-						</button>
+						followRender()
 					)}
 				</span>
 			</div>
@@ -237,7 +303,26 @@ const Detail = (props) => {
 						<div className="modal-body">
 							{props.followerDetail.length
 								? props.followerDetail.map((val, idx) => {
-										return <p key={idx}>{val.userId1}</p>;
+										return (
+											<div key={idx}>
+												<img
+													src={
+														val.userData[0]
+															.profilePic
+															? val.userData[0]
+																	.profilePic
+															: 'https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png'
+													}
+													alt="user"
+													width="30"
+													height="30"
+													className="me-3 rounded-circle"
+												/>
+												<b className="text-capitalize">
+													{val.userData[0].name}
+												</b>
+											</div>
+										);
 								  })
 								: 'No follower list'}
 						</div>
@@ -270,7 +355,26 @@ const Detail = (props) => {
 						<div className="modal-body">
 							{props.followingDetail.length
 								? props.followingDetail.map((val, idx) => {
-										return <p key={idx}>{val.userId1}</p>;
+										return (
+											<div key={idx}>
+												<img
+													src={
+														val.userData[0]
+															.profilePic
+															? val.userData[0]
+																	.profilePic
+															: 'https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png'
+													}
+													alt="user"
+													width="30"
+													height="30"
+													className="me-3 rounded-circle"
+												/>
+												<b className="text-capitalize">
+													{val.userData[0].name}
+												</b>
+											</div>
+										);
 								  })
 								: 'No following list'}
 						</div>

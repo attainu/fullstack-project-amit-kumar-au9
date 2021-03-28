@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getPostList } from '../../Redux/Actions';
 import Loading from '../Common/Loading';
 import PostCard from './PostCard';
+import ErrorPage from '../Common/ErrorPage';
 
 const page_no = 1;
 
@@ -17,7 +18,6 @@ const Home = ({
 	useEffect(() => {
 		getPostList(postUrl, page_no);
 	}, [getPostList, postUrl]);
-
 	if (postList) {
 		return (
 			<>
@@ -38,7 +38,7 @@ const Home = ({
 	} else if (isLoadingPostList) {
 		return <Loading />;
 	} else {
-		return <p>{postListError}</p>;
+		return <ErrorPage error={postListError} />;
 	}
 };
 

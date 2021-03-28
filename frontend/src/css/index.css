@@ -2,12 +2,9 @@
 	--primary: #032541;
 	--primary_hover: #088bf750;
 	--primary_active: #0d7ad3;
-	--primary_text: #032541;
-	--secondary: #ffffff;
-	--secondary_text: #ffffff;
-	--content_text: #000000;
-	--transparent: #fff0;
+	--primary_text: #ffffff;
 }
+
 html,
 body {
 	margin: 0;
@@ -37,22 +34,39 @@ body {
 }
 
 .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link {
+	color: #000;
+}
+
+.nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
 	border-color: #fff;
 	border-bottom: 3px solid var(--primary_active);
 	color: var(--primary_active);
 }
+
 .nav-tabs {
 	background-color: #fff;
+	border: 1px solid #fff;
+	border-top-left-radius: 0.25rem;
+	border-top-right-radius: 0.25rem;
 }
 
 .save_post_border {
 	border-bottom: 3px solid var(--primary_active);
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 780px) {
 	.main-container {
 		width: 100%;
 		padding: 0 1px;
 	}
+}
+
+.logOutBtn {
+	background-color: #032541 !important;
+	color: #fff !important;
+	float: right;
+	margin-top: 10px;
+	margin-right: 10px;
 }

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import '../../css/galleryPost.css';
 import { savePost } from '../../Redux/Actions';
 
@@ -8,13 +8,9 @@ const GalleryView = ({ Data, unSave }) => {
 	};
 	return (
 		<div className="galleryPost">
-			<Link to={`/post/${Data.postId}`}>
-				<img
-					src={Data.all_files.files[0]}
-					alt="gallery"
-					type="button"
-				/>
-			</Link>
+			{/* <Link to={`/post/${Data.postId}`}> */}
+			<img src={Data.all_files.files[0]} alt="gallery" />
+			{/* </Link> */}
 			{unSave && (
 				<div onClick={unsaveHandler}>
 					<i

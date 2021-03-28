@@ -2,6 +2,7 @@ const {
 	loginSchema,
 	userRegisterSchema,
 	artistRegisterSchema,
+	resetPasswordSchema,
 } = require('./validationSchema');
 
 exports.loginValidation = (req, res, next) => {
@@ -25,6 +26,18 @@ exports.registerValidation = (req, res, next) => {
 	if (error) {
 		return res.json({
 			message: 'Register failed',
+			status: 400,
+			error: error.details[0].message,
+		});
+	}
+	next();
+};
+
+exports.resetPassword = (req, res, next) => {
+	const { error } = resetPasswordSchema.validate(req.body);
+	if (error) {
+		return res.json({
+			message: 'Reset failed',
 			status: 400,
 			error: error.details[0].message,
 		});

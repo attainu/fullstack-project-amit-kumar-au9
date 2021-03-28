@@ -57,7 +57,7 @@ const HomePage = () => {
 					</button>
 				</li>
 			</ul>
-			<div>
+			<div className="allPostContainer">
 				<PostList postUrl={`home/${HomeType}`} />
 			</div>
 		</>

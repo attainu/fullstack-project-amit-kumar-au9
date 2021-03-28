@@ -6,6 +6,7 @@ import Dp from './Common/Dp';
 import Details from './ArtistComponents/Details';
 import GalleryType from './ArtistComponents/GalleryType';
 import Loading from '../Common/Loading';
+import ErrorPage from '../Common/ErrorPage';
 
 const ArtistPage = ({
 	match,
@@ -14,6 +15,7 @@ const ArtistPage = ({
 	isLoadingArtistDetail,
 	fetchArtist,
 	followerDetail,
+	userId,
 }) => {
 	useEffect(() => {
 		fetchArtist(match.params.id);
@@ -61,6 +63,7 @@ const ArtistPage = ({
 							Desc={ArtistDetail.data.shortDesc}
 							followingDetail={followingDetail.data}
 							followerDetail={followerDetail.data}
+							userId={userId}
 						/>
 					</div>
 					<div className="ps-4 pe-4 pt-2">
@@ -71,6 +74,7 @@ const ArtistPage = ({
 							{ArtistDetail.data.shortDesc}
 						</p>
 					</div>
+					<hr />
 					<GalleryType Id={match.params.id} />
 				</>
 			);
@@ -80,11 +84,12 @@ const ArtistPage = ({
 	} else if (isLoadingArtistDetail) {
 		return <Loading />;
 	} else {
-		return <h1>error</h1>;
+		return <ErrorPage error="Something went wrong" />;
 	}
 };
 const mapStateToProps = (state) => {
 	return {
+		userId: state.UserAuth.user.userId,
 		ArtistDetail: state.ArtistReducer.ArtistDetail,
 		isLoadingArtistDetail: state.ArtistReducer.isLoadingArtistDetail,
 		followingDetail: state.ArtistReducer.followingDetail,

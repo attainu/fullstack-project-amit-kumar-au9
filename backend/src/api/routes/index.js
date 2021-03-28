@@ -14,6 +14,7 @@ const followerRouter = require('./followerRouter');
 const saveRouter = require('./saveRouter');
 const settingRouter = require('./settingRouter');
 const occasionRouter = require('./occasionRouter');
+const searchRouter = require('./searchRouter');
 
 indexRouter.use('/auth', userAuthRouter);
 indexRouter.use('/post', authChecker, postRouter);
@@ -28,5 +29,6 @@ indexRouter.use('/follower', authChecker, followerRouter);
 indexRouter.use('/save', authChecker, saveRouter);
 indexRouter.use('/setting', authChecker, settingRouter);
 indexRouter.use('/data/occasion', occasionRouter);
+indexRouter.use('/search', authChecker, searchRouter);
 
 module.exports = indexRouter;

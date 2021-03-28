@@ -59,7 +59,7 @@ export const loginUser = (data) => (dispatch) => {
 				} else if (reply.data.status === 300) {
 					dispatch({
 						type: 'LOGIN_ERROR',
-						payload: reply.data.message,
+						payload: reply.data.error,
 					});
 				} else if (reply.data.status === 400) {
 					dispatch({
@@ -143,7 +143,7 @@ export const setUser = () => (dispatch) => {
 
 export const ChangeColor = (themeColor) => {
 	document.body.style.setProperty('--primary', themeColor.main);
-	document.body.style.setProperty('--primary_text', themeColor.main);
+	document.body.style.setProperty('--primary_text', themeColor.text);
 	document.body.style.setProperty('--primary_hover', themeColor.hover);
 	document.body.style.setProperty('--primary_active', themeColor.active);
 };

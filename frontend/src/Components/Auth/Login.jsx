@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginUser } from '../../Redux/Actions';
 import '../../css/Login.css';
+import Header from './Header';
 
 const Login = (props) => {
 	const [L_email, setLEmail] = useState('');
@@ -20,6 +21,8 @@ const Login = (props) => {
 	if (!props.user) {
 		return (
 			<>
+				<Header />
+
 				<div className="login-outer-container">
 					<div className="mainConatiner">
 						<Zoom>

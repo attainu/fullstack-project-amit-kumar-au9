@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchSavedPost } from '../Redux/Actions/SavedPost';
 import GalleryView from './Common/GalleryView';
 import Loading from './Common/Loading';
+import ErrorPage from './Common/ErrorPage';
 
 const SavedPost = ({
 	match,
@@ -24,7 +25,7 @@ const SavedPost = ({
 						</b>
 					</div>
 					<div className="d-flex flex-row flex-wrap">
-						{savedPost.data ? (
+						{savedPost.data.length ? (
 							savedPost.data.map((val, idx) => {
 								return (
 									<GalleryView
@@ -49,11 +50,11 @@ const SavedPost = ({
 								/>
 								<p>
 									Save photos and videos that you want to see
-									again. No
+									again.
 								</p>
 								<p>
-									one is notified, and only you can see what
-									you've saved.
+									No one is notified, and only you can see
+									what you've saved.
 								</p>
 							</div>
 						)}
@@ -66,7 +67,7 @@ const SavedPost = ({
 	} else if (isLoadingSavedtDetail) {
 		return <Loading />;
 	} else {
-		return <h1>error</h1>;
+		return <ErrorPage error="Something went wrong" />;
 	}
 };
 

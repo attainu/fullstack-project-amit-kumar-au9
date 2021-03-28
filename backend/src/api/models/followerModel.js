@@ -63,7 +63,7 @@ exports.getFollowerList = (userId2, callback) => {
 				},
 				{
 					$addFields: {
-						userId2: {
+						userId1: {
 							$toObjectId: '$userId1',
 						},
 					},
@@ -76,11 +76,7 @@ exports.getFollowerList = (userId2, callback) => {
 						as: 'userData',
 					},
 				},
-				{
-					$project: {
-						...pipeline.userProject,
-					},
-				},
+				{ $project: { ...pipeline.userProject } },
 			])
 			.then((reply) => {
 				callback('', {

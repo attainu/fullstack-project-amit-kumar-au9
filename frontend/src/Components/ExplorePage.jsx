@@ -136,7 +136,7 @@ const ExplorePage = () => {
 					</div>
 				</form>
 			)}
-			<div className="container-fluid">
+			<div className="allPostContainer">
 				<PostList postUrl={`explore/${ExploreType}`} />
 			</div>
 		</>

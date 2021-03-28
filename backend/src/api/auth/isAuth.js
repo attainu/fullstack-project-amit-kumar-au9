@@ -62,12 +62,21 @@ const authChecker = (req, res, next) => {
 		getUserDetail(user_id.id, (err, result) => {
 			if (err) return res.json({ status: 500, message: 'DB error' });
 			if (result) {
-				req.userData = result;
-				next();
+				if (result.isActive === 1) {
+					req.userData = result;
+					next();
+				} else if (result.isActive === 0) {
+					return res.json({
+						status: 300,
+						message: 'Account not verified, Verify the account',
+						error: 'Account not verified, Verify the account',
+					});
+				}
 			} else {
 				return res.json({
 					status: 300,
 					message: 'Login Expired, Please Login Again',
+					error: 'Login Expired, Please Login Again',
 				});
 			}
 		});
@@ -75,6 +84,7 @@ const authChecker = (req, res, next) => {
 		return res.json({
 			status: 300,
 			message: 'Login Expired, Please Login Again',
+			error: 'Login Expired, Please Login Again',
 		});
 	}
 };
