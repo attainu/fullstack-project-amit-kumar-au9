@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+.navbar-brand {
+	font-family: 'Righteous', cursive;
+	padding: 5px 15px;
+	border-radius: 7px;
+	text-decoration: none;
+}
+
+.navbar {
+	background-color: var(--primary);
+}
+
+.navbar_web_links {
+	display: flex;
+}
+
+.navbar_web_links span {
+	cursor: pointer;
+}
+.show_on_mobile_nav {
+	display: none;
+}
+.margin_movie_btn {
+	margin-right: auto;
+	margin-left: 0;
+}
+@media screen and (max-width: 600px) {
+	.navbar_web_links {
+		display: none;
+	}
+	.show_on_mobile_nav {
+		display: block;
+	}
+	.margin_movie_btn {
+		margin-left: auto;
+		margin-right: 0;
+	}
+}
+
+.fa_btn {
+	color: var(--secondary_text) !important;
+	background-color: var(--transparent);
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+
+.fa_btn:hover,
+.fa_btn:focus {
+	outline: none;
+	border: none;
+}
+
+.navbar-nav .dropdown-menu {
+	position: absolute;
+}
+
+.logout_btn {
+	color: var(--primary_text) !important;
+	cursor: pointer;
+}

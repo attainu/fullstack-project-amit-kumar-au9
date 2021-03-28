@@ -1,0 +1,163 @@
+@url = https://artist-hub-api.herokuapp.com
+@jsonType = application/json
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNGM2MGM2YmU0Yzg2MDAxNWM3NzU4OCIsImlhdCI6MTYxNTY0OTgwMywiZXhwIjoxNjE1NzM2MjAzfQ.wxM1JP3g5CrbZ5cuHEn-hM4BCYWYDo8-D-odn3IuJQc
+@postId = 604b7bd6b35341633808a2d4
+@userId = 604b7b0b97f3374a1cc194b7
+@commentId = 604ba3ff85c1b330b829b30b
+GET {{url}}/health
+
+### Register user
+POST {{url}}/auth/registerUser
+Content-Type: {{jsonType}}
+{
+    "name":"mukul p",
+    "email":"mukul@gmail.com",
+    "password":"123456"
+}
+
+### Login User
+POST {{url}}/auth/loginUser
+Content-Type: {{jsonType}}
+
+{
+    "email":"mukul@gmail.com",
+    "password":"123456"
+}
+
+### ADD NEW POST
+POST {{url}}/post/addPost HTTP/1.1
+Content-Type: {{jsonType}}
+auth-token: {{authToken}}
+
+{
+    "location": "roorkee",
+    "occassion":"wedding",
+    "caption": "new post",
+    "description": "dfdf"
+}
+
+### POST CRUD
+### GET POST detail by post id
+GET {{url}}/post/getPostDetail/{{postId}}
+auth-token: {{authToken}}
+
+### get all post by user id
+GET {{url}}/post/getPostByUser/{{userId}}
+auth-token: {{authToken}}
+
+### delete post by post id
+GET {{url}}/post/deletePost/{{postId}}
+auth-token: {{authToken}}
+
+### update post detail by post id
+POST {{url}}/post/updatePost/{{postId}}
+Content-Type: {{jsonType}}
+auth-token: {{authToken}}
+
+{
+    "location": "new delhi",
+    "occassion":"birthday",
+    "caption": "new post",
+    "description": "dfdf",
+    "tags": ["abc"]
+}
+
+### Ratings CRUD
+### add rating by post id
+GET {{url}}/rating/addRating/{{postId}}?rating=3
+auth-token: {{authToken}}
+
+### update rating by post id
+GET {{url}}/rating/updateRating/{{postId}}?rating=2
+auth-token: {{authToken}}
+
+### get all rating of post by post id
+GET {{url}}/rating/getRatings/{{postId}}
+auth-token: {{authToken}}
+
+### get avg rating of post by post id
+GET {{url}}/rating/getAvgRatings/{{postId}}
+auth-token: {{authToken}}
+
+### delete rating given by user on a post by post id
+GET {{url}}/rating/deleteRating/{{postId}}
+auth-token: {{authToken}}
+
+### Comments CRUD
+### add comment by post id
+POST {{url}}/comment/addComment/{{postId}}
+Content-Type: {{jsonType}}
+auth-token: {{authToken}}
+
+{
+    "comment": "New comment"
+}
+
+### update comment by comment id
+POST {{url}}/comment/updateComment/{{commentId}}
+Content-Type: {{jsonType}}
+auth-token: {{authToken}}
+
+{
+    "comment":"updated comment"
+}
+
+### get comments detail by post id
+GET {{url}}/comment/getComments/{{postId}}
+auth-token: {{authToken}}
+
+### get comments count by post id
+GET {{url}}/comment/getCommentsCounts/{{postId}}
+auth-token: {{authToken}}
+
+### delete comment of user by post id
+GET {{url}}/comment/deleteComment/{{postId}}
+auth-token: {{authToken}}
+
+### Likes CRUD
+### add like by post id
+GET {{url}}/like/addLike/{{postId}}
+auth-token: {{authToken}}
+
+### remove like by post id
+GET {{url}}/like/unLike/{{postId}}
+auth-token: {{authToken}}
+
+### get likes details by post id
+GET {{url}}/like/getLikes/{{postId}}
+auth-token: {{authToken}}
+
+### get likes count by post id
+GET {{url}}/like/getlikeCounts/{{postId}}
+auth-token: {{authToken}}
+
+### POST IMAGES CRUD
+### add post image by post id
+POST {{url}}/image/addImage
+Content-Type: multipart/form-data
+auth-token: {{authToken}}
+
+imageFile = coupon.png
+isImage = true
+postId = {{postId}}
+
+### update post image by image id
+POST {{url}}/image/updateImage
+Content-Type: multipart/form-data
+auth-token: {{authToken}}
+
+imageFile = coupon.png
+imageId = post_files/tacj4vnraqhpkvoxah0b
+
+### delete post image by image id
+POST {{url}}/image/deleteImage
+Content-Type: {{jsonType}}
+auth-token: {{authToken}}
+
+{
+    "imageId": "post_files/s0lcogvwidv6ydqofeux"
+}
+
+### get all post images by post id
+GET {{url}}/image/getImages/{{postId}}
+auth-token: {{authToken}}

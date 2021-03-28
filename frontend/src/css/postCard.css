@@ -1,0 +1,98 @@
+.post_card {
+	border-radius: 5px;
+	margin: 25px 0;
+	background-color: #fff;
+	box-shadow: 0px 0px 10px 1px rgb(0 0 0 / 29%);
+}
+
+.post_card_header {
+	padding: 10px 15px 5px 15px;
+}
+
+.post-card-option {
+	background-color: #fff;
+	padding: 5px 0px;
+}
+
+.post-images img {
+	height: 300px;
+	width: 100%;
+}
+
+.border-bottom {
+	border-bottom: 1px solid rgb(97, 94, 94);
+}
+
+.border-top {
+	border-top: 1px solid rgb(97, 94, 94);
+}
+
+.post_card_header a {
+	text-decoration: none;
+}
+
+.post_card_header .username {
+	text-transform: lowercase;
+}
+
+.post_card button {
+	outline: none;
+	border: none;
+}
+
+.post-card-caption-tag {
+	padding: 10px 20px 10px 20px;
+}
+
+.post_card button:hover {
+	outline: none;
+	border: none;
+}
+
+.commentSection {
+	padding: 10px;
+}
+
+.newComment input {
+	border-radius: 50px 0% 0% 50px;
+}
+
+.newComment button {
+	border-radius: 0% 50px 50px 0%;
+}
+
+.allComment {
+	max-height: 150px;
+	overflow-y: scroll;
+}
+
+.allComment::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	background-color: #f5f5f5;
+	border-radius: 10px;
+}
+
+.allComment::-webkit-scrollbar {
+	width: 7px;
+	background-color: #f5f5f5;
+}
+
+.allComment::-webkit-scrollbar-thumb {
+	background-color: #0ae;
+	border-radius: 10px;
+	background-image: -webkit-gradient(
+		linear,
+		0 0,
+		0 100%,
+		color-stop(0.5, rgba(255, 255, 255, 0.2)),
+		color-stop(0.5, transparent),
+		to(transparent)
+	);
+}
+
+@media only screen and (max-width: 500px) {
+	.post_card {
+		border: none;
+		border-radius: 0%;
+	}
+}

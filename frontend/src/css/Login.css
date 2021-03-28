@@ -1,0 +1,100 @@
+.login-outer-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 80vh;
+}
+.mainConatiner {
+	display: flex;
+	flex-flow: row;
+	width: 70%;
+}
+.register-option {
+	padding: 25px;
+	text-align: right;
+	margin-top: 10%;
+}
+.login-inner {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 300px;
+	box-shadow: 0px 0px 5px 3px #0000002b;
+	border-radius: 10px;
+}
+.login-form .card {
+	border: none !important;
+}
+.login-inner .card-header {
+	border-radius: 10px 10px 0 0;
+	background-color: var(--primary);
+	color: var(--secondary_text);
+	text-align: center;
+}
+.login-form {
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 30px 60px var(--primary);
+}
+
+.login-fb {
+	font-size: 30px;
+	float: right;
+	margin: 0 10px;
+	background-color: white;
+	color: #3b5998;
+	cursor: pointer;
+}
+.login-goggle {
+	font-size: 30px;
+	float: right;
+	background-color: white;
+	color: #db4437;
+	cursor: pointer;
+}
+.register-option-mobile {
+	display: none;
+}
+
+/* -------------------------------------------------------------------------------------------- */
+.signup-inner {
+	width: 400px !important;
+}
+
+/* -------------------------------------------------------------------------------------------- */
+
+@media only screen and (max-width: 760px) {
+	.signup-form {
+		height: auto !important;
+		margin: 10% auto 10% -20px;
+	}
+
+	.register-option-mobile {
+		display: block;
+	}
+	.mainConatiner {
+		display: block;
+		width: auto;
+	}
+	.login-inner {
+		width: 280px;
+	}
+	.signup-inner {
+		width: 400px !important;
+	}
+	.register-option {
+		display: none;
+	}
+	.login-outer-container {
+		margin-left: -20px;
+	}
+}
+@media only screen and (max-width: 500px) {
+	.register-option {
+		padding: 10px;
+		margin-top: 40px;
+	}
+	.signup-inner {
+		width: 280px !important;
+	}
+}

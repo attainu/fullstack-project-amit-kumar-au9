@@ -1,0 +1,58 @@
+:root {
+	--primary: #032541;
+	--primary_hover: #088bf750;
+	--primary_active: #0d7ad3;
+	--primary_text: #032541;
+	--secondary: #ffffff;
+	--secondary_text: #ffffff;
+	--content_text: #000000;
+	--transparent: #fff0;
+}
+html,
+body {
+	margin: 0;
+	height: 100%;
+	overflow: hidden;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.text-primary-color {
+	color: var(--primary_active);
+}
+
+.main-container {
+	width: 50vw;
+	overflow-y: scroll !important;
+	background-color: #fff;
+	height: 100vh;
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+.main-container::-webkit-scrollbar {
+	display: none;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+	border-color: #fff;
+	border-bottom: 3px solid var(--primary_active);
+	color: var(--primary_active);
+}
+.nav-tabs {
+	background-color: #fff;
+}
+
+.save_post_border {
+	border-bottom: 3px solid var(--primary_active);
+}
+
+@media only screen and (max-width: 720px) {
+	.main-container {
+		width: 100%;
+		padding: 0 1px;
+	}
+}

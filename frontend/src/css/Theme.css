@@ -1,0 +1,32 @@
+.theme_container {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-evenly;
+}
+
+.theme_container button {
+	margin: 10px;
+	color: var(--secondary_text);
+	width: 25%;
+	height: 120px;
+	border: none;
+	border-radius: 10px;
+}
+
+.theme_container button:hover {
+	outline: none;
+	border: none;
+}
+
+.theme_container button:focus {
+	outline: none;
+	border: none;
+}
+
+@media screen and (max-width: 650px) {
+	.theme_container button {
+		width: 40%;
+		height: 50px;
+		border-radius: 5px;
+	}
+}

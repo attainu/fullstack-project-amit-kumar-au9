@@ -1,0 +1,29 @@
+.dp {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	box-shadow: 0px 0px 5px 3px rgb(0, 0, 0, 0.3);
+}
+.artistDetail {
+	padding: 20px;
+	display: flex;
+	flex-flow: row nowrap;
+}
+.showOn650 {
+	display: none;
+}
+.hideOn650 {
+	display: block;
+}
+@media only screen and (max-width: 600px) {
+	.dp {
+		width: 70px;
+		height: 70px;
+	}
+	.showOn650 {
+		display: block;
+	}
+	.hideOn650 {
+		display: none;
+	}
+}
